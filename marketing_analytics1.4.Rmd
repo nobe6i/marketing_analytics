@@ -1,0 +1,100 @@
+---
+title: "Marketing Analytics Course 1 module 4"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+First, we upload our times series data.
+
+```{r}
+realdata.df <- read.csv("edx_datavis_time.csv", header=TRUE)
+```
+
+We check our upload by doing a summary of our data
+
+```{r}
+summary(realdata.df)
+```
+
+We create a valuables year and price and assign the year and price columns to them.
+
+```{r}
+year <- realdata.df$Year
+price <- realdata.df$Price1000
+```
+ 
+Here we do a simple line plot in red of year and data
+
+```{r}
+plot(year, price, type="l", col="red", main="Price Trend", xlab="Year", ylab="Price * 1000")
+```
+
+Now we do a bar plot. Bar plots are useful for comparing statistics of one variable. 
+
+```{r}
+data.df <- read.csv ("edx_rbasics__1_.csv", header =TRUE)
+```
+
+We summarize to check if that data was read in correctly.
+
+```{r}
+summary(data.df)
+```
+
+We are going to use an aggregate function to find the mean for all the prices of different bedrooms.
+
+```{r}
+chartdata <- aggregate (data.df$Price1000, by=list (data.df$Bedrooms), FUN=mean)
+```
+
+We print the chartdata to see the mean of all the different houses by the number of bedrooms that they have. 
+
+```{r}
+chartdata
+```
+
+Now we create names for our chartdata chart.
+
+```{r}
+names (chartdata) <- c("Bedrooms", "MeanPrice")
+```
+
+We print with our labeled columns.
+
+```{r}
+chartdata
+```
+
+We then create a bar plot with our chartdata.
+
+```{r}
+barplot (chartdata$MeanPrice, names.arg=chartdata$Bedrooms, xlab="Bedrooms", ylab="MeanPrice", col="blue")
+```
+
+## Scatterplots are useful for finding relationships between two variables. 
+
+We assign the two variables we'd like to compare. LotAcre to lot and SizeSqFt to house. 
+
+```{r}
+lot <- data.df$LotAcre
+house <- data.df$SizeSqFt
+```
+
+We will now print both lot and house columns
+
+```{r}
+lot
+```
+```{r}
+house
+```
+
+Here is our of house size versus Lot Size scatter plot.
+
+```{r}
+plot(lot, house, col="red", main="House Size vs. Lot Size")
+```
+
+We interpret the chart and see that there is a linear and clustering relationship that does suggest that there is a small correlation between the house size and lot size. After five thousand feet there are large outliers and the relationship between lot size and house size decreases.
