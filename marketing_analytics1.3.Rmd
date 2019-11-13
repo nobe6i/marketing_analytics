@@ -1,0 +1,71 @@
+---
+title: "Marketing Analytics Course 1.3"
+output: html_notebook
+---
+
+First I downloaded the data prep (dataprep1) Excel file from Edx. The dataprep file needs to be edited and the categorical Neighborhood column turned into numberic data. We do so by creating dummy variables with three columns for the different neighborhoods. We only need two of the columns to discern the infomation of the three neighborhood columns, so we remove one column. Now we save the Excel file as a column seperated values or csv file. Using a csv file makes it easy to upload our data into R. 
+
+Here we read our file into R and save it as dataframe named DataReal.df
+
+```{r}
+DataReal.df <- read.csv("edx_dataprep1.2.csv")
+```
+
+Now we check to see if our file has been downloaded correctly by printing our data frame.
+
+```{r}
+DataReal.df
+```
+
+We see that it was loaded perfectly. There are no NaNs. A perfect dataset. 
+
+We check the summary statistics for the datasets
+
+```{r}
+summary(RealData.df)
+```
+
+Let's check for outliers. Here we check the mean and median for the price variable.
+
+```{r}
+mean(RealData.df$Price1000)
+```
+
+```{r}
+median(RealData.df$Price1000)
+```
+
+Since the median is lower then the mean we see that there are going to be some outliers.
+
+Let's check the minimum and maximum of the price variable.
+
+```{r}
+min(RealData.df$Price1000); max(RealData.df$Price1000)
+```
+
+Now we check the lot size and see if this could be a determining factor
+```{r}
+min(RealData.df$LotAcre); max(RealData.df$LotAcre)
+```
+
+We look at the year things were built.
+
+```{r}
+min(RealData.df$Year); max(RealData.df$Year)
+```
+
+Let's check the number of bedrooms.
+
+```{r}
+min(RealData.df$Bedrooms); max(RealData.df$Bedrooms)
+```
+
+And lastly the number of bathrooms
+
+```{r}
+min(RealData.df$Bathrooms); max(RealData.df$Bathrooms)
+```
+
+
+
+
